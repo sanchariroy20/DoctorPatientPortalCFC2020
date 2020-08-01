@@ -1,0 +1,55 @@
+<nav class="navbar navbar-inverse visible-xs">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Logo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Sessions</a></li>
+                <li><a href="#">Ml Portal Images</a></li>
+                <li><a href="#">Nearby</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row content" style="background-color: #3b3b3b;height: 100vh;">
+        <div style="height: 100vh;background-color:#595959 ;" class="col-sm-2 sidenav hidden-xs">
+            <img src="../../assets/logo.png" style="width: 150px;height: 150px;margin-left: 20px;">
+            <ul class="nav nav-pills nav-stacked red">
+                <li><a [routerLink]="['/doctorhome']" style="color: white;">My Profile</a></li>
+                <li class="active"><a style="color: white;">Patient Reports</a></li>
+                <li (click)="logOff()" style="cursor: pointer;color: white;"><a
+                        style="text-decoration: none;color: white;">Log Off</a></li>
+            </ul><br>
+        </div>
+        <br>
+
+        <div class="col-sm-7">
+            <div class="well  well-lg">
+                <h3 style="font-weight: bold;">Reports</h3>
+                <p>COVID-19 Self Assesment Reports</p>
+                <div>
+                    <li style="font-size: 13px;background-color: rgba(32, 20, 20, 0.425);border-color: lightgray;"
+                        class="list-group-item">
+                        File name<span style="float: right;margin-right: 50px;">User Email Id</span></li>
+                    <li style="font-size: 13px;padding: 20px; background-color: rgba(65, 65, 65, 0.425);color: white;border-color: lightgray;"
+                        *ngFor="let element of PdfUrlList; let i = index" class="list-group-item">
+                        <a style="text-decoration: none;color: white;" target="_blank"
+                            [href]="element.path">{{element.file_name}}</a><span style="float:right">{{element.userEmailId}}</span></li>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-3">
+           
+        </div>
+    </div>
+</div>

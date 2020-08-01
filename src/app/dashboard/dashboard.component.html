@@ -1,0 +1,98 @@
+<nav class="navbar navbar-inverse visible-xs">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">{{user}}</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Sessions</a></li>
+                <li><a href="#">Ml Portal Images</a></li>
+                <li><a href="#">Nearby</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row content" style="background-color: #3b3b3b;height: 100vh;">
+        <div style="height: 100vh;background-color:#595959 ;" class="col-sm-2 sidenav hidden-xs">
+            <img src="../../assets/logo.png" style="width: 150px;height: 150px;margin-left: 20px;">
+            <ul class="nav nav-pills nav-stacked red">
+                <li class="active"><a>Dashboard</a></li>
+                <li><a [routerLink]="['/SessionList']" style="color: white;">My Profile</a></li>
+                <li><a [routerLink]="['/sessions']" style="color: white;">Reports</a></li>
+                <li><a [routerLink]="['/mlportal']" style="color: white;">Image Analysis</a></li>
+                <li><a [routerLink]="['/files']" style="color: white;">Files</a></li>
+                <li><a [routerLink]="['/nearby']" style="color: white;">Location</a></li>
+                <li (click)="logOff()" style="cursor: pointer;color: white;"><a
+                        style="text-decoration: none;color: white;">Log Off</a></li>
+            </ul><br>
+        </div>
+        <br>
+
+        <div class="col-sm-10">
+
+            <div class="well well-lg" style="text-align: center;">
+                <h4 style="font-weight: bold;">Patient Analysis</h4>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="well well-lg">
+                        <img src="../../assets/blood-drop.png" style="width: 70px;height: 70px;">
+                        <h3 style="font-weight: bold;">High</h3>
+                        <h4>Blood Pressure</h4>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well well-lg">
+                        <img src="../../assets/thermometer.png" style="width: 70px;height: 70px;">
+                        <h3 style="font-weight: bold;">97.6F</h3>
+                        <h4>Body Temperature</h4>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well well-lg">
+                        <img src="../../assets/diabetes.png" style="width: 70px;height: 70px;">
+                        <h3 style="font-weight: bold;">High</h3>
+                        <h4>Blood Glucose</h4>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well well-lg">
+                        <img src="../../assets/blood-type.png" style="width: 70px;height: 70px;">
+                        <h3 style="font-weight: bold;">O+</h3>
+                        <h4>Blood Group</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="well well-lg">
+                        <h4>Sentiment Analysis</h4>
+                        <div class=" chart-area"><canvas style="height: 200px;" id="chartLineGreen"> </canvas></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="well well-lg" style="height: 275px;">
+                        <h4>Sleep Analysis(Static)</h4>
+                        <div><canvas style="height: 200px;" id="chartLineRed"> </canvas></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="well well-lg" style="height: 275px;">
+                        <h4>Blood Pressure Analysis(Static)</h4>
+                        <div><canvas style="height: 200px;" id="chartLinePressure"> </canvas></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

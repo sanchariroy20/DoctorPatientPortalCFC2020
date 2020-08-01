@@ -1,0 +1,94 @@
+<nav class="navbar navbar-inverse visible-xs">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Logo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Sessions</a></li>
+                <li><a href="#">Ml Portal Images</a></li>
+                <li><a href="#">Nearby</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row content" style="background-color: #3b3b3b;height: 100vh;">
+        <div style="height: 100vh;background-color:#595959 ;" class="col-sm-2 sidenav hidden-xs">
+            <img src="../../assets/logo.png" style="width: 150px;height: 150px;margin-left: 20px;">
+            <ul class="nav nav-pills nav-stacked red">
+                <li><a [routerLink]="['/dashboard']" style="color: white;">Dashboard</a></li>
+                <li><a [routerLink]="['/SessionList']" style="color: white;">My Profile</a></li>
+                <li class="active"><a style="color: white;">Reports</a></li>
+                <li><a [routerLink]="['/mlportal']" style="color: white;">Image Analysis</a></li>
+                <li><a [routerLink]="['/files']" style="color: white;">Files</a></li>
+                <li><a [routerLink]="['/nearby']" style="color: white;">Location</a></li>
+                <li (click)="logOff()" style="cursor: pointer;color: white;"><a
+                        style="text-decoration: none;color: white;">Log Off</a></li>
+            </ul><br>
+        </div>
+        <br>
+
+        <div class="col-sm-7">
+            <div class="well  well-lg">
+                <h3 style="font-weight: bold;">Reports</h3>
+                <p>COVID-19 Self Assesment Reports</p>
+                <div *ngIf="!shareToDoctor;else doctorList">
+                    <li style="font-size: 13px;background-color: rgba(32, 20, 20, 0.425);border-color: lightgray;"
+                        class="list-group-item">
+                        File name<span style="margin-left: 250px;">Created
+                            at</span><span style="float: right;"><button
+                                style="border: none;background-color: transparent;"><i
+                                    class="fa fa-share-alt"></i></button></span></li>
+                    <li style="font-size: 13px;padding: 20px; background-color: rgba(65, 65, 65, 0.425);color: white;border-color: lightgray;"
+                        *ngFor="let element of PdfUrlList; let i = index" class="list-group-item">
+                        <a style="text-decoration: none;color: white;" target="_blank"
+                            [href]="element.ReportPDF">{{element.file_name}}</a><span
+                            style="margin-left: 100px;">{{element.timestamp}}</span><span style="float: right;"><button
+                                style="border: none;background-color: transparent;"
+                                (click)="onDoctorShare($event,element.file_path,element.ReportPDF)"><i
+                                    class="fa fa-share-alt"></i></button></span></li>
+                </div>
+                <ng-template #doctorList>
+                    <li style="font-size: 13px;background-color: rgba(32, 20, 20, 0.425);border-color: lightgray;"
+                        class="list-group-item"><span style="float: left;"><button
+                                style="border: none;background-color: transparent;" (click)="backToDoctor()"><i
+                                    class="fa fa-arrow-left"></i></button></span>
+                        Doctor Name<span style="float: right;"><button
+                                style="border: none;background-color: transparent;"><i
+                                    class="fa fa-share-alt"></i></button></span><span
+                            style="float: right;margin-right: 250px;">Email</span></li>
+                    <li style="font-size: 13px;padding: 20px;background-color: rgba(65, 65, 65, 0.425);color: white;border-color: lightgray;"
+                        *ngFor="let element1 of newDoctorList" class="list-group-item">
+                        <a style="text-decoration: none;color: white;" target="_blank">{{element1.name}}</a><span
+                            style="float: right;"><button
+                                style="border: white 1px solid;border-radius:10px;background-color: transparent;"
+                                (click)="shareToDoctorByEmail($event,element1.emailid)"><i></i>Share</button></span><span
+                            style="float:right;margin-right: 150px;">{{element1.emailid}}</span></li>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="well">
+                <label class="btn btn-dark" style="background-color: #333;color: aliceblue;width: 100%;">
+                    Upload Files<input type="file"  style="display: none !important;"
+                    (change)="onFileUpload($event)">
+                </label>
+            </div>
+            <div class="well">
+                <ul class="nav nav-pills nav-stacked red">
+                    <li class="active"><a style="font-weight: bold;text-align: center;">Doctor List</a></li>
+
+                    <li><a style="color: white;" *ngFor="let element of anotherDoctorList">{{element["name"]}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

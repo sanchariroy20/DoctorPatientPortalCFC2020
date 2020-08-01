@@ -1,0 +1,110 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-lg-6"
+            style="background-color: burlywood;background-image: url('../../assets/LOGO_UPDATE.jpg');background-position: inherit;background-repeat: no-repeat;background-size: cover;position: relative;height: 100vh;opacity: 0.7;">
+       
+        <h1 style="color: white;padding-top:250px;padding-left:100px;padding-right:100px;font-weight: bold;font-size: 50px;">Doctor Patient Portal</h1>
+        </div>
+        <div *ngIf="isRegisterForm;else signinSection" class="col-sm-6 col-lg-6">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12" style="padding: 70px;">
+                    <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister(registerForm.value)">
+                        <div class="form-group col-sm-12">
+                            <label for="email">Email address</label>
+                            <input style="width: 70%;" type="email" class="form-control" id="email" name="emailid"
+                                aria-describedby="emailHelp" placeholder="Enter email" ngModel>
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.</small>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label for="name">Name</label>
+                            <input style="width: 70%;" type="text" class="form-control" id="name" name="name"
+                                placeholder="Enter your full name" ngModel>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="gender">Gender</label>
+                            <select style="width: 70%;height: 45px;" id="gender" name="gender" ngModel
+                                class="form-control">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="age">Age</label>
+                            <input style="width: 70%;height: 45px;" type="text" class="form-control" id="age" name="age"
+                                placeholder="Enter your Age" ngModel>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label for="user">Profile Type</label>
+                            <select style="width: 70%;height: 45px;" id="user" name="user" ngModel class="form-control">
+                                <option>Patient</option>
+                                <option>Doctor</option>
+                            </select>
+                        </div>
+                        <div class="row" style="margin-top: 30px;margin-left: 35px;">
+                            <div class="row">
+                                <button type="submit" class="btn btn-dark"
+                                    style="background-color: #333;color: white;">Register</button>
+                            </div>
+                            <div class="row" style="margin-top: 5px;">
+                                <small id="" class="form-text text-muted">If already registered! Please <b><a
+                                            (click)="changeToSignInForm()" style="cursor: pointer;">Sign
+                                            In</a></b></small>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <ng-template #signinSection>
+            <div class="col-sm-6 col-lg-6">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12" style="padding: 120px;" *ngIf="!isOtpValid;else otpForm">
+                        <form #loginForm="ngForm" (ngSubmit)="onSubmitSignin(loginForm.value)">
+                            <div class="form-group col-sm-12">
+                                <label for="email">Email address</label>
+                                <input style="width: 70%;" type="email" class="form-control" id="email" name="emailid"
+                                    placeholder="Enter email" ngModel>
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label for="user">Profile Type</label>
+                                <select style="width: 70%;height: 45px;" id="user" name="user" ngModel
+                                    class="form-control">
+                                    <option>Patient</option>
+                                    <option>Doctor</option>
+                                </select>
+                            </div>
+                            <div class="row" style="margin-top: 30px;margin-left: 35px;">
+                                <div class="row">
+                                    <button type="submit" class="btn btn-dark"
+                                        style="background-color: #333;color: white;">Sign In</button>
+                                </div>
+                                <div class="row" style="margin-top: 5px;">
+                                    <small id="" class="form-text text-muted">If not registered! Please
+                                        <b><a (click)="changeToRegisterForm()"
+                                                style="cursor: pointer;">Sign Up</a></b></small>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <ng-template #otpForm>
+                        <div class="col-sm-12 col-lg-12" style="padding: 120px;">
+                            <form #otpForm="ngForm" (ngSubmit)="onSubmitOtpValidate(otpForm.value)">
+                                <div class="form-group col-sm-12">
+                                    <label for="otp">OTP</label>
+                                    <input style="width: 70%;" type="text" class="form-control" id="otp" name="otp"
+                                        placeholder="Enter OTP" ngModel>
+                                </div>
+                                <div class="row" style="margin-top: 30px;margin-left: 30px;">
+                                    <button type="submit" class="btn btn-dark"
+                                        style="background-color: #333;color: white;">Authorize</button>
+                                </div>
+                            </form>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>

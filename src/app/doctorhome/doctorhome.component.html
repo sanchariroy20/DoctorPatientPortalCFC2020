@@ -1,0 +1,119 @@
+<nav class="navbar navbar-inverse visible-xs">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">{{user}}</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Sessions</a></li>
+                <li><a href="#">Ml Portal Images</a></li>
+                <li><a href="#">Nearby</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row content" style="background-color: #3b3b3b;height: 100vh;">
+        <div style="height: 100vh;background-color:#595959 ;" class="col-sm-2 sidenav hidden-xs">
+            <img src="../../assets/logo.png" style="width: 150px;height: 150px;margin-left: 20px;">
+            <ul class="nav nav-pills nav-stacked red">
+                <li class="active"><a>My Profile</a></li>
+                <li><a [routerLink]="['/userreport']" style="color: white;">Reports</a></li>
+                <li (click)="logOff()" style="cursor: pointer;color: white;"><a
+                        style="text-decoration: none;color: white;">Log Off</a></li>
+            </ul><br>
+        </div>
+        <br>
+
+        <div class="col-sm-7">
+            <div class="well well-lg">
+                <h3 style="font-weight: bold;">My Profile</h3>
+                <p>Personal Details</p>
+                <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+                    <div class="form-row" style="padding-bottom: 60px;">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Email</label>
+                            <input type="email" name="emailid" class="form-control" id="emailid" placeholder="Email"
+                                [value]="user" [ngModel]="user" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Name</label>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Enter Name"
+                                [ngModel]="name" required>
+                        </div>
+                    </div>
+                    <div class="form-row" style="padding-bottom: 70px;">
+                        <div class="form-group col-md-8">
+                            <label for="inputAddress">Address</label>
+                            <input type="textarea" name="address" class="form-control" id="inputAddress"
+                                placeholder="Enter your address here" [ngModel]="address" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputCity">City</label>
+                            <input type="text" name="city" class="form-control" id="inputCity" [ngModel]="city"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="form-row" style="padding-bottom: 100px;">
+                        <div class="form-inline col-md-6">
+                            <label>Gender:&nbsp;</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" value="male" id="gender" [ngModel]="gender" disabled
+                                    required>Male
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" value="female" id="gender" [ngModel]="gender" disabled
+                                    required>Female
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" value="others" id="gender" [ngModel]="gender" disabled
+                                    required>Others
+                            </label>
+                        </div>
+                        <div class="form-inline col-md-6">
+                            <label for="inputAge">Age&nbsp;</label>
+                            <input type="text" class="form-control" name="age" placeholder="Enter Age" id="inputAge"
+                                [ngModel]="age" required>
+                        </div>
+                    </div>
+                    <div class="form-row" style="padding-bottom: 70px;">
+                        <div class="form-group col-md-8">
+                            <label for="inputAddress">Doctor Registration Id</label>
+                            <input type="textarea" name="address" class="form-control" id="inputAddress"
+                                placeholder="Enter Doctor Registration" [ngModel]="address" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputCity">Specialization</label>
+                            <input type="text" name="Specialization" class="form-control" id="inputCity" [ngModel]="city"
+                                required>
+                        </div>
+                    </div>
+                    <div class="form-row" style="padding-bottom: 60px;">
+                        <div class="form-inline col-md-12">
+                            <button type="submit" class="btn btn-light"
+                                style="background-color: #333;color: white;">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            
+            <div class="well">
+                <ul class="nav nav-pills nav-stacked red">
+                    <li class="active"><a style="font-weight: bold;text-align: center;">Doctor List</a></li>
+
+                    <li><a style="color: white;" *ngFor="let element of newDoctorList">{{element["name"]}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
